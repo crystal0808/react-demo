@@ -49,6 +49,8 @@ class App extends Component {
             paused: true,
             reverse: false,
             hidden:false,
+            firstPhoto:"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png",
+            secondPhoto:"https://upload.wikimedia.org/wikipedia/commons/8/8e/Pierre-Auguste_Renoir_-_Portrait_de_Mademoiselle_Victorine_de_Bellio.jpg",
         };
     }
 
@@ -79,7 +81,9 @@ class App extends Component {
         });
     }
 
-    onClick = () => {
+    onClick (a,b)  {
+        console.log(a)
+        console.log(b)
         this.setState({
             paused: false,
             reverse: false,
@@ -123,123 +127,61 @@ class App extends Component {
                     bottom: 0,
                     left: '0%',
                     right: 0,
-                    width: '50%',
+                    width: '60%',
                     height: '350px',
                 }}>
-                    {/*<div style={{background: '#ECECEC', padding: '30px'}}>
-                    <Row gutter={16}>
-                        <Col span={8}>
-                            <Card
-                                hoverable
-                                style={{width: 240}}
-                                cover={<img alt="example"
-                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                            >
-                                <Meta
-                                    title="Europe Street beat"
-                                    description="www.instagram.com"
-                                />
 
-                            </Card>, </Col>
-                        <Col span={8}>
-                            <Card
-                                hoverable
-                                style={{width: 240}}
-                                cover={<img alt="example"
-                                            src="https://i.pinimg.com/474x/c1/9e/3c/c19e3ce4b91d87cb37e6deec4c2af973.jpg"/>}
-                            >
-                                <Meta
-                                    title="Europe Street beat"
-                                    description="www.instagram.com"
-                                />
-                            </Card>,
-                        </Col>
-                        <Col span={8}>
-                            <Card
-                                hoverable
-                                style={{width: 240}}
-                                cover={<img alt="example"
-                                            src="https://adorablepetworld.files.wordpress.com/2018/07/4-ways-cheer-up-depressed-cat.jpg"/>}
-                            >
-                                <Meta
-                                    title="Europe Street beat"
-                                    description="www.instagram.com"
-                                />
-                            </Card>,
-                        </Col>
-                    </Row>*/}
-                    {/*</div><Carousel afterChange={this.onChange}>
-                <div><h3><Card
-                    hoverable
-                    style={{width: 240}}
-                    cover={<img alt="example"
-                                src="https://adorablepetworld.files.wordpress.com/2018/07/4-ways-cheer-up-depressed-cat.jpg"/>}
-                >
-                    <Meta
-                        title="Europe Street beat"
-                        description="www.instagram.com"
-                    />
-                </Card></h3></div>
-                <div><h3><Card
-                    hoverable
-                    style={{width: 240}}
-                    cover={<img alt="example"
-                                src="https://adorablepetworld.files.wordpress.com/2018/07/4-ways-cheer-up-depressed-cat.jpg"/>}
-                >
-                    <Meta
-                        title="Europe Street beat"
-                        description="www.instagram.com"
-                    />
-                </Card></h3></div>
-                <div><h3><Card
-                    hoverable
-                    style={{width: 240}}
-                    cover={<img alt="example"
-                                src="https://adorablepetworld.files.wordpress.com/2018/07/4-ways-cheer-up-depressed-cat.jpg"/>}
-                >
-                    <Meta
-                        title="Europe Street beat"
-                        description="www.instagram.com"
-                    />
-                </Card></h3></div>
-                <div><h3><Card
-                    hoverable
-                    style={{width: 240}}
-                    cover={<img alt="example"
-                                src="https://adorablepetworld.files.wordpress.com/2018/07/4-ways-cheer-up-depressed-cat.jpg"/>}
-                >
-                    <Meta
-                        title="Europe Street beat"
-                        description="www.instagram.com"
-                    />
-                </Card></h3></div>
-            </Carousel>,*/}
-                    <TweenOne
-                        animation={this.animation}
-                        paused={this.state.paused}
-                        reverse={this.state.reverse}
-                        moment={this.state.moment}
-                        // className="code-box-shape"
-                        style={{
-                            margin: '40px 20px', position: 'absolute',
-                            top: '0',
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            width: '350px',
-                            height: '350px',
-                            borderradius: '4px',
-                            //background: 'blue'
-                        }}
-                    >
                         <div>
                             <Row gutter={16}>
+                                <Col hidden = {!this.state.hidden} span={8}
+                                     style={{
+                                         margin: '40px 20px', position: 'absolute',
+                                         top: '0',
+                                         bottom: 0,
+                                         left: 0,
+                                         right: 0,
+                                         width: '350px',
+                                         height: '350px',
+                                         borderradius: '4px',
+                                         //background: 'blue'
+                                     }}>
+                                    <Card
+                                        //hidden = {!this.state.hidden}
+                                        hoverable
+                                        style={{width: 240,}}
+                                        cover={<img alt="example"
+                                                    src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
+                                    >
+                                        <Meta
+                                            title="Europe Street beat"
+                                            description="www.instagram.com"
+                                        />
+                                    </Card>
+                                </Col>
+                                <TweenOne
+                                    animation={this.animation}
+                                    paused={this.state.paused}
+                                    reverse={this.state.reverse}
+                                    moment={this.state.moment}
+                                    // className="code-box-shape"
+                                    style={{
+                                        margin: '40px 20px', position: 'absolute',
+                                        top: '0',
+                                        bottom: 0,
+                                        left: 0,
+                                        right: 0,
+                                        width: '350px',
+                                        height: '350px',
+                                        borderradius: '4px',
+                                        //background: 'blue'
+                                    }}
+                                >
                                 <Col span={8}>
                                     <Card
                                         hoverable
                                         style={{width: 240, }}
                                         cover={<img alt="example"
-                                                    src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Pierre-Auguste_Renoir_-_Portrait_de_Mademoiselle_Victorine_de_Bellio.jpg"/>}
+                                                    src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Anne_Baxter_publicity_photo.JPG"/>}
                                     >
                                         <Meta
                                             title="Europe Street beat"
@@ -264,7 +206,7 @@ class App extends Component {
                                     <Card
                                         hidden = {this.state.hidden}
                                         hoverable
-                                        style={{width: 240, marginLeft: 550,}}
+                                        style={{width: 240, marginLeft: 1050,}}
                                         cover={<img alt="example"
                                                     src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Pierre-Auguste_Renoir_-_Portrait_de_Mademoiselle_Victorine_de_Bellio.jpg"/>}
                                     >
@@ -274,9 +216,10 @@ class App extends Component {
                                         />
                                     </Card>
                                 </Col>
+                                </TweenOne>
                             </Row>
                         </div>
-                    </TweenOne>
+
 
                    {/* <div className="demo-buttons"
                          style={{
@@ -295,11 +238,13 @@ class App extends Component {
                 </div>
                 <div>
                     <Card title="Card Title">
-                        <Card.Grid style={gridStyle}><Avatar onClick={this.onClick}
-                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" shape="square" size={64}
+                        <Card.Grid style={gridStyle}><Avatar
+                            src= {this.state.firstPhoto}shape="square" size={64}
+                            onClick={this.onClick.bind(this,'firstPhoto')}
                             icon="user"/></Card.Grid>
                         <Card.Grid style={gridStyle}><Avatar
-                            src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Pierre-Auguste_Renoir_-_Portrait_de_Mademoiselle_Victorine_de_Bellio.jpg" shape="square" size={64}
+                            src= {this.state.secondPhoto} shape="square" size={64}
+                            onClick={this.onClick.bind(this,'secondPhoto')}
                             icon="user"/></Card.Grid>
                         <Card.Grid style={gridStyle}><Avatar
                             src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Anne_Baxter_publicity_photo.JPG" shape="square" size={64}
