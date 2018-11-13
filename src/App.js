@@ -48,6 +48,7 @@ class App extends Component {
             moment: null,
             paused: true,
             reverse: false,
+            hidden:false,
         };
     }
 
@@ -83,6 +84,7 @@ class App extends Component {
             paused: false,
             reverse: false,
             moment: null,
+            hidden:true,
         });
     }
 
@@ -114,33 +116,12 @@ class App extends Component {
     render() {
         return (
             <div>
-                <div
-                    style={{
-                    position: 'relative',
-                    top: '0',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    width: '50%',
-                    height: '350px',
-                }}>
-                    <Card
-                        hoverable
-                        style={{width: 240}}
-                        cover={<img alt="example"
-                                    src="https://adorablepetworld.files.wordpress.com/2018/07/4-ways-cheer-up-depressed-cat.jpg"/>}
-                    >
-                        <Meta
-                            title="Europe Street beat"
-                            description="www.instagram.com"
-                        />
-                    </Card>
-                </div>
+
                 <div style={{
                     position: 'relative',
                     top: '0',
                     bottom: 0,
-                    left: 0,
+                    left: '0%',
                     right: 0,
                     width: '50%',
                     height: '350px',
@@ -256,7 +237,20 @@ class App extends Component {
                                 <Col span={8}>
                                     <Card
                                         hoverable
-                                        style={{width: 240}}
+                                        style={{width: 240, }}
+                                        cover={<img alt="example"
+                                                    src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Pierre-Auguste_Renoir_-_Portrait_de_Mademoiselle_Victorine_de_Bellio.jpg"/>}
+                                    >
+                                        <Meta
+                                            title="Europe Street beat"
+                                            description="www.instagram.com"
+                                        />
+                                    </Card>
+                                </Col>
+                                <Col span={8}>
+                                    <Card
+                                        hoverable
+                                        style={{width: 240,marginLeft: 550,}}
                                         cover={<img alt="example"
                                                     src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
                                     >
@@ -268,6 +262,7 @@ class App extends Component {
                                 </Col>
                                 <Col span={8}>
                                     <Card
+                                        hidden = {this.state.hidden}
                                         hoverable
                                         style={{width: 240, marginLeft: 550,}}
                                         cover={<img alt="example"
