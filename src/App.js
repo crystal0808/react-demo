@@ -6,6 +6,10 @@ import PropTypes from 'prop-types';
 import TweenOne from 'rc-tween-one';
 import Button from 'antd/lib/button';
 import 'antd/dist/antd.css'
+import Slider from "react-slick";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 
 var TweenOneGroup = TweenOne.TweenOneGroup;
 const {Meta} = Card;
@@ -118,123 +122,35 @@ class App extends Component {
         );
       }*/
     render() {
+        var settings = {
+            dots: false,
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: false,
+            speed: 2000,
+            arrows:true,
+            autoplaySpeed: 2000,
+            cssEase: "linear"
+        };
         return (
             <div>
-
-                <div style={{
-                    position: 'relative',
-                    top: '0',
-                    bottom: 0,
-                    left: '0%',
-                    right: 0,
-                    width: '60%',
-                    height: '350px',
-                }}>
-
+                <div className="container">
+                    <h2>About Us</h2>
+                    <Slider {...settings}>
                         <div>
-                            <Row gutter={16}>
-                                <Col hidden = {!this.state.hidden} span={8}
-                                     style={{
-                                         margin: '40px 20px', position: 'absolute',
-                                         top: '0',
-                                         bottom: 0,
-                                         left: 0,
-                                         right: 0,
-                                         width: '350px',
-                                         height: '350px',
-                                         borderradius: '4px',
-                                         //background: 'blue'
-                                     }}>
-                                    <Card
-                                        //hidden = {!this.state.hidden}
-                                        hoverable
-                                        style={{width: 240,}}
-                                        cover={<img alt="example"
-                                                    src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                    >
-                                        <Meta
-                                            title="Europe Street beat"
-                                            description="www.instagram.com"
-                                        />
-                                    </Card>
-                                </Col>
-                                <TweenOne
-                                    animation={this.animation}
-                                    paused={this.state.paused}
-                                    reverse={this.state.reverse}
-                                    moment={this.state.moment}
-                                    // className="code-box-shape"
-                                    style={{
-                                        margin: '40px 20px', position: 'absolute',
-                                        top: '0',
-                                        bottom: 0,
-                                        left: 0,
-                                        right: 0,
-                                        width: '350px',
-                                        height: '350px',
-                                        borderradius: '4px',
-                                        //background: 'blue'
-                                    }}
-                                >
-                                <Col span={8}>
-                                    <Card
-                                        hoverable
-                                        style={{width: 240, }}
-                                        cover={<img alt="example"
-                                                    src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Anne_Baxter_publicity_photo.JPG"/>}
-                                    >
-                                        <Meta
-                                            title="Europe Street beat"
-                                            description="www.instagram.com"
-                                        />
-                                    </Card>
-                                </Col>
-                                <Col span={8}>
-                                    <Card
-                                        hoverable
-                                        style={{width: 240,marginLeft: 550,}}
-                                        cover={<img alt="example"
-                                                    src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                    >
-                                        <Meta
-                                            title="Europe Street beat"
-                                            description="www.instagram.com"
-                                        />
-                                    </Card>
-                                </Col>
-                                <Col span={8}>
-                                    <Card
-                                        hidden = {this.state.hidden}
-                                        hoverable
-                                        style={{width: 240, marginLeft: 1050,}}
-                                        cover={<img alt="example"
-                                                    src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Pierre-Auguste_Renoir_-_Portrait_de_Mademoiselle_Victorine_de_Bellio.jpg"/>}
-                                    >
-                                        <Meta
-                                            title="Europe Street beat"
-                                            description="www.instagram.com"
-                                        />
-                                    </Card>
-                                </Col>
-                                </TweenOne>
-                            </Row>
+                            <img src="http://placekitten.com/g/400/200" />
                         </div>
-
-
-                   {/* <div className="demo-buttons"
-                         style={{
-                             position: 'absolute',
-                             width: 300,
-                             left: '50%',
-                             marginLeft: -150,
-                             bottom: 25
-                         }}
-                    >
-                        <Button type="primary" onClick={this.onClick}>play</Button>
-                        <Button type="primary" onClick={this.onPause}>pause</Button>
-                        <Button type="primary" onClick={this.onReverse}>reverse</Button>
-                        <Button type="primary" onClick={this.onRestart}>restart</Button>
-                    </div>*/}
+                        <div>
+                            <img src="http://placekitten.com/g/400/200" />
+                        </div>
+                        <div>
+                            <img src="http://placekitten.com/g/400/200" />
+                        </div>
+                        <div>
+                            <img src="http://placekitten.com/g/400/200" />
+                        </div>
+                    </Slider>
                 </div>
                 <div>
                     <Card title="Card Title">

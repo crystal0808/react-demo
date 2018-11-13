@@ -32,6 +32,13 @@
 .ant-carousel .slick-slide h3 {
   color: #fff;
 }
+.container {
+  margin: 0 auto;
+  padding: 40px;
+  width: 90%;
+  color: #333;
+  background: #fdf1eb;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
