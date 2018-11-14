@@ -1,60 +1,56 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {Card, Icon, Avatar, Col, Row, Carousel} from 'antd';
+import {Card, Avatar, Col,} from 'antd';
 import PropTypes from 'prop-types';
-import TweenOne from 'rc-tween-one';
-import Button from 'antd/lib/button';
 import 'antd/dist/antd.css'
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 
-var TweenOneGroup = TweenOne.TweenOneGroup;
-const {Meta} = Card;
 const gridStyle = {
     width: '7%',
     height: '100%',
     textAlign: 'center',
+    padding:'10px',
 };
-const p0 = 'M0,100 L25,100 C34,20 40,0 100,0';
-const p1 = 'M0,100 C5,120 25,130 25,100 C30,60 40,75 58,90 C69,98.5 83,99.5 100,100';
-const ease0 = TweenOne.easing.path(p0);
-const ease1 = TweenOne.easing.path(p1);
-
+const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: false,
+    speed: 2000,
+    arrows:true,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+    /* afterChange: () =>
+         this.setState(state => ({ updateCount: state.updateCount + 1 })),
+     beforeChange: (current, next) => this.setState({ slideIndex: next })*/
+};
 class App extends Component {
     constructor(props) {
         super(props);
         this.moment = null;
-        this.animation = {left: '70%', duration: 2000};
-        this.animation2 = [
-            {
-                repeatDelay: 500,
-                y: -70,
-                repeat: -1,
-                yoyo: true,
-                ease: ease0,
-                duration: 1000
-            },
-            {
-                repeatDelay: 500,
-                appearTo: 0,
-                scaleX: 0,
-                scaleY: 2,
-                repeat: -1,
-                yoyo: true,
-                ease: ease1,
-                duration: 1000,
-            }
-        ];
         this.state = {
             moment: null,
             paused: true,
             reverse: false,
             hidden:false,
-            firstPhoto:"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png",
-            secondPhoto:"https://upload.wikimedia.org/wikipedia/commons/8/8e/Pierre-Auguste_Renoir_-_Portrait_de_Mademoiselle_Victorine_de_Bellio.jpg",
+            firstPhoto:"https://images.unsplash.com/photo-1542029315121-d30eb8a19d75?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d35ff866dfbb3306bcecbd1156892e73&auto=format&fit=crop&w=500&q=60",
+            secondPhoto:"https://images.unsplash.com/photo-1535930749574-1399327ce78f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1f8a140ac20927deb386d1c9187433d6&auto=format&fit=crop&w=376&q=80",
+            thirdPhoto:"https://images.unsplash.com/photo-1528493366314-e317cd98dd52?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=de131fd63e40fc70681c9c1c280a756e&auto=format&fit=crop&w=375&q=80",
+            fourthPhoto:"https://images.unsplash.com/photo-1536626375075-d90e699bf633?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d085b3de9e141b2b7dbe00de2c2224bf&auto=format&fit=crop&w=375&q=80",
+            slideIndex: 0,
+            updateCount: 0,
+            currentIndex:0,
+            photos:["https://images.unsplash.com/photo-1542029315121-d30eb8a19d75?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d35ff866dfbb3306bcecbd1156892e73&auto=format&fit=crop&w=500&q=60",
+                "https://images.unsplash.com/photo-1535930749574-1399327ce78f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1f8a140ac20927deb386d1c9187433d6&auto=format&fit=crop&w=376&q=80",
+                "https://images.unsplash.com/photo-1528493366314-e317cd98dd52?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=de131fd63e40fc70681c9c1c280a756e&auto=format&fit=crop&w=375&q=80",
+                "https://images.unsplash.com/photo-1536626375075-d90e699bf633?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d085b3de9e141b2b7dbe00de2c2224bf&auto=format&fit=crop&w=375&q=80",
+                "https://images.unsplash.com/photo-1508964942454-1a56651d54ac?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b1977dea472daee640b0cf9c64f455a0&auto=format&fit=crop&w=675&q=80"
+
+            ],
         };
     }
 
@@ -88,6 +84,7 @@ class App extends Component {
     onClick (a,b)  {
         console.log(a)
         console.log(b)
+        ;
         this.setState({
             paused: false,
             reverse: false,
@@ -99,107 +96,65 @@ class App extends Component {
     onChange(a, b, c) {
         console.log(a, b, c);
     }
+    handleClick=(index)=>{
+        console.log(index)
+console.log("testest")
+       /* if (index == this.state.currentIndex) {
+            return;
+        }*/
+        let currentPhoto = this.state.photos[index];
+        /*this.setState({
+            fourthPhoto:currentPhoto,
+          //  currentIndex:index,
 
+        })*/
 
-    /*  render() {
-        return (
-          <div className="App">
-            <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <p>
-                Edit <code>src/App.js</code> and save to reload. test test
-              </p>
-              <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn React
-              </a>
-            </header>
-          </div>
-        );
-      }*/
+       // this.slider.slickPrev()
+        this.slider.slickGoTo(index);
+
+    }
     render() {
-        var settings = {
-            dots: false,
-            infinite: true,
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            autoplay: false,
-            speed: 2000,
-            arrows:true,
-            autoplaySpeed: 2000,
-            cssEase: "linear"
-        };
+
         return (
             <div>
                 <div className="container">
                     <h2>About Us</h2>
-                    <Slider {...settings}>
-                        <div>
-                            <img src="http://placekitten.com/g/400/200" />
-                        </div>
-                        <div>
-                            <img src="http://placekitten.com/g/400/200" />
-                        </div>
-                        <div>
-                            <img src="http://placekitten.com/g/400/200" />
-                        </div>
-                        <div>
-                            <img src="http://placekitten.com/g/400/200" />
-                        </div>
+                    <Slider ref={slider => (this.slider = slider)} {...settings}>
+                       <div>
+                            <Col xs={{ span: 5, offset: 1 }} lg={{ span: 6, offset: 2 }}>
+
+                                <img className="photo" src={this.state.firstPhoto}/>image 0
+
+                            </Col></div><div>
+                            <Col xs={{ span: 11, offset: 1 }} lg={{ span: 6, offset: 2 }}>
+
+                            <img className="photo" src={this.state.secondPhoto} />image 1
+
+                            </Col> </div>
+                            <div>    <Col xs={{ span: 5, offset: 1 }} lg={{ span: 6, offset: 2 }}>
+
+                            <img className="photo" src={this.state.thirdPhoto} />image 2
+
+                            </Col> </div>
+                            <div>    <Col xs={{ span: 5, offset: 1 }} lg={{ span: 6, offset: 2 }}>
+
+                            <img className="photo" src={this.state.fourthPhoto} />image 3
+
+                            </Col> </div>
+
                     </Slider>
                 </div>
-                <div>
-                    <Card title="Card Title">
-                        <Card.Grid style={gridStyle}><Avatar
-                            src= {this.state.firstPhoto}shape="square" size={64}
-                            onClick={this.onClick.bind(this,'firstPhoto')}
-                            icon="user"/></Card.Grid>
-                        <Card.Grid style={gridStyle}><Avatar
-                            src= {this.state.secondPhoto} shape="square" size={64}
-                            onClick={this.onClick.bind(this,'secondPhoto')}
-                            icon="user"/></Card.Grid>
-                        <Card.Grid style={gridStyle}><Avatar
-                            src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Anne_Baxter_publicity_photo.JPG" shape="square" size={64}
-                            icon="user"/></Card.Grid>
-                        <Card.Grid style={gridStyle}><Avatar
-                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" shape="square" size={64}
-                            icon="user"/></Card.Grid>
-                        <Card.Grid style={gridStyle}><Avatar
-                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" shape="square" size={64}
-                            icon="user"/></Card.Grid>
-                        <Card.Grid style={gridStyle}><Avatar
-                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" shape="square" size={64}
-                            icon="user"/></Card.Grid>
-                        <Card.Grid style={gridStyle}><Avatar
-                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" shape="square" size={64}
-                            icon="user"/></Card.Grid>
+                <div className="container">
+                    <Card >
+                        {this.state.photos.map((photo, index) =>
+                         (<Card.Grid key={index} style={gridStyle}><Avatar
+                        src= {photo}shape="square" size={64}
+                      //  onClick={e => this.slider.slickPrev()}
+                             onClick = {this.handleClick.bind(this, index)}
+                        icon="user"/></Card.Grid>))}
+
                     </Card>
                 </div>
-                {/*<div>
-                    <TweenOne
-                        animation={this.animation2}
-                        paused={this.props.paused}
-                        //className="code-box-shape"
-                        style={{
-                            position: 'absolute',
-                            transformOrigin: 'center bottom',
-                            margin: '40px 20px',
-                            top: '0',
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            width: '50px',
-                            height: '50px',
-                            borderradius: '4px',
-                            background: 'blue'
-
-                        }}
-                    />
-                </div>*/}
             </div>
         )
     }
