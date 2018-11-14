@@ -35,13 +35,20 @@
 .container {
   margin: 0 auto;
   padding: 40px;
-  width: 90%;
+  width: 100%;
   color: #333;
   background: #fdf1eb;
 }
 .photo {
   width:270px;
   height:300px
+}
+.logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255,255,255,.2);
+  margin: 16px 24px 16px 0;
+  float: left;
 }
 @keyframes App-logo-spin {
   from {
