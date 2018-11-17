@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+div.container
+{
+width:90%;
+border:1em solid;
+}
+div.box
+{
+box-sizing:border-box;
+width:30%;
+border:1em solid red;
+border:2px solid;
+border-radius:25px;
+float:left;
+box-shadow: 10px 10px 5px #888888;
+width:100px;
+height:200px;
+margin-Right:100px;
+background:red;
+position:relative;
+animation:myfirst 3s;
+animation-fill-mode :forwards;
+opacity: 1;
+  transition: opacity 2s linear;
+}
+div.box2
+{
+box-sizing:border-box;
+width:30%;
+border:1em solid red;
+border:2px solid;
+border-radius:25px;
+float:left;
+box-shadow: 10px 10px 5px #888888;
+width:100px;
+height:200px;
+margin-Right:70px;
+background:red;
+position:relative;
+animation:myThird 3s;
+animation-fill-mode :forwards;
+}
+div.box3
+{
+box-sizing:border-box;
+width:30%;
+border:1em solid red;
+border:2px solid;
+border-radius:25px;
+//float:left;
+box-shadow: 10px 10px 5px #888888;
+width:100px;
+height:200px;
+//margin-Right:70px;
+background:red;
+position:relative;
+animation:myNewBox 3s;
+}
+@keyframes myfirst
+{
+0%   {background:red; left:0px; top:0px;}
+100%  {background:yellow; left:200px; top:0px;}
+}
+@keyframes myThird
+{
+0%   {background:red; left:0px; top:0px;}
+100%  {background:yellow; left:200px; top:0px; opacity: 0; width:0;
+
+}
+}
+@keyframes myNewBox
+{
+0%  {background:green; left:0px; top:200px;}
+100% {background:red; left:0px; top:0px;}
+}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="box">这个 div 1。<img src="/i/bg_flower.gif" alt="Flowers">
+</div>
+<div class="box">这个 div 2。<img src="/i/bg_flower.gif" alt="Flowers">
+</div>
+<div class="box2">这个 div 3。<img src="/i/bg_flower.gif" alt="Flowers">
+</div>
+<div class="box3">new box</div>
+
+</div>
+
+</body>
+</html>
