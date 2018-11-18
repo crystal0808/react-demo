@@ -46,19 +46,31 @@ animation-fill-mode :forwards;
 div.box3
 {
 box-sizing:border-box;
-width:30%;
+height:15px;
+width:15px;
 border:1em solid red;
 border:2px solid;
 border-radius:25px;
 //float:left;
 box-shadow: 10px 10px 5px #888888;
-width:100px;
-height:200px;
 //margin-Right:70px;
 background:red;
 position:relative;
-animation:myNewBox 3s;
+animation:myNewBox 3s forwards;
 }
+div.box3:hover {
+width:100px;
+height:200px;
+}
+img3{
+    height:15px;
+    width:15px;
+}
+img3: hover{
+    height: 450px;
+    width: 450px;
+}
+
 @keyframes myfirst
 {
 0%   {background:red; left:0px; top:0px;}
@@ -74,7 +86,8 @@ animation:myNewBox 3s;
 @keyframes myNewBox
 {
 0%  {background:green; left:0px; top:200px;}
-100% {background:red; left:0px; top:0px;}
+100% {background:red; left:0px; top:0px; width:100px;
+height:200px;}
 }
 }
 </style>
@@ -88,7 +101,7 @@ animation:myNewBox 3s;
 </div>
 <div class="box2">这个 div 3。<img src="/i/bg_flower.gif" alt="Flowers">
 </div>
-<div class="box3">new box</div>
+<div class="box3">new box </div>
 
 </div>
 
