@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial;
+}
+.demo {
+   // float: left;
+    width: 25%;
+    margin-left: 30px;
+}
+/* The grid: Four equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 25%;
+    padding: 10px;
+}
+
+/* Style the images inside the grid */
+.column img {
+    opacity: 0.8; 
+    cursor: pointer; 
+}
+
+.column img:hover {
+    opacity: 1;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* The expanding image container */
+.container {
+    position: relative;
+    display: none;
+}
+.container2 {
+    position: relative;
+    display: block;
+	//animation:myfirst 3s forwards;
+}
+.trans{
+position: relative;
+animation:myfirst 3s forwards;
+}
+.trans2{
+position: relative;
+animation:myThird 3s forwards;
+}
+/* Expanding image text */
+#imgtext {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    color: white;
+    font-size: 20px;
+}
+
+/* Closable button inside the expanded image */
+.closebtn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: white;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+
+@keyframes myfirst
+{
+0%   {left:0px; top:0px;}
+100%  {left:100px; top:0px;}
+}
+@keyframes myThird
+{
+0%   {background:red; left:0px; top:0px;}
+100%  {left:100px; opacity:0}
+}
+</style>
+</head>
+<body>
+
+<div style="text-align:center">
+  <h2>Tabbed Image Gallery</h2>
+  <p>Click on the images below:</p>
+</div>
+
+<!-- The four columns -->
+<div class="row">
+  <div class="column">
+    <img src="img_nature.jpg" alt="Nature" style="width:100%" onclick="myFunction(this, replaceCallback);">
+  </div>
+  <div class="column">
+    <img src="img_snow.jpg" alt="Snow" style="width:100%" onclick="myFunction(this, replaceCallback);">
+  </div>
+  <div class="column">
+    <img src="img_mountains.jpg" alt="Mountains" style="width:100%" onclick="myFunction(this, replaceCallback);">
+  </div>
+  <div class="column">
+    <img src="img_lights.jpg" alt="Lights" style="width:100%" onclick="myFunction(this, replaceCallback);">
+  </div>
+</div>
+
+
+<div class="container2">
+  <img id="expandedImg"  style="width:20%,opacity:0">
+  <img class="demo" id="expandedImg" src="img_snow.jpg" style="width:20%">
+  <img class="demo" id="Img2" src="img_lights.jpg" style="width:20%">
+  <img class="demo" id="Img3" src="img_mountains.jpg" style="width:20%">
+  <div id="imgtext"></div>
+</div>
+<script>
+function myFunction(imgs,callback) {
+    var expandImg = document.getElementById("expandedImg");
+    var Img3 = document.getElementById("Img3");
+    var Img2 = document.getElementById("Img2");
+    var newSrc3 = Img2.src;
+    var newSrc2 = expandImg.src;
+    var imgText = document.getElementById("imgtext");
+    expandImg.src = imgs.src;
+    var dots = document.getElementsByClassName("demo");
+ //   for (i = 0; i < dots.length; i++) {
+  //    dots[i].className += " trans";
+//      }
+
+      dots[0].className += " trans";
+      dots[1].className += " trans";
+      dots[2].className += " trans2";
+      
+    expandImg.style.width = "20%";
+    imgText.innerHTML = imgs.alt;
+    expandImg.parentElement.style.display = "block";
+    
+ setTimeout(
+    function () {
+        replaceCallback(newSrc2, newSrc3);
+    }, 3000);
+}
+function replaceCallback(newSrc2, newSrc3) {
+      var dots = document.getElementsByClassName("demo");
+ //   for (i = 0; i < dots.length; i++) {
+  //    dots[i].className += " trans";
+//      }
+      dots[0].className -= " trans";
+      dots[1].className -= " trans";
+      dots[2].className -= " trans2";
+      
+      //document.getElementById("expandedImg").style.width = "20%";;
+    document.getElementById("Img2").src = newSrc2;
+    document.getElementById("Img3").src = newSrc3;
+}
+</script>
+
+</body>
+</html>
