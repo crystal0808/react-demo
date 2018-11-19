@@ -2,6 +2,17 @@
 <html>
 <head>
 <style> 
+:root {
+  //--primary-color: red;
+  animation:0;
+}
+p {
+  left:var(--positionX);
+  top:var(--positionY);
+  position:relative;
+  color: var(--primary-color);
+
+}
 div.container
 {
 width:100%;
@@ -21,8 +32,16 @@ height:200px;
 margin-Right:100px;
 background:red;
 position:relative;
-animation:myfirst 3s;
-animation-fill-mode :forwards;
+//animation:myfirst 3s;
+animation:var(--ani);
+color: var(--primary-color);
+//animation-fill-mode :forwards;
+//transform:scale 2;
+//transition:transform 3s liner;
+//will-change:transform;
+}
+div.box.trans{
+animation:myfirst 3s forwards;
 }
 div.box2
 {
@@ -38,14 +57,18 @@ height:200px;
 margin-Right:70px;
 background:red;
 position:relative;
-animation:myThird 3s;
-animation-fill-mode :forwards;
+//animation:myThird 3s;
+//animation-fill-mode :forwards;
+}
+div.box2.trans{
+animation:myThird 3s forwards;
 }
 div.box3
 {
 box-sizing:border-box;
-height:15px;
-width:15px;
+height:25px;
+width:25px;
+top:300px;
 border:1em solid red;
 border:2px solid;
 border-radius:25px;
@@ -54,9 +77,11 @@ box-shadow: 10px 10px 5px #888888;
 margin-Right:70px;
 background:red;
 position:relative;
+//animation:myNewBox 3s forwards;
+}
+div.box3.trans{
 animation:myNewBox 3s forwards;
 }
-
 @keyframes myfirst
 {
 0%   {background:red; left:0px; top:0px;}
@@ -70,7 +95,7 @@ animation:myNewBox 3s forwards;
 }
 @keyframes myNewBox
 {
-0%  {background:green; left:0px; top:400px;}
+0%  {background:green; left:0px; top:300px;}
 100% {background:red; left:0px; top:0px; width:100px;
 height:200px;}
 }
@@ -78,17 +103,35 @@ height:200px;}
 </style>
 </head>
 <body>
-
+<button onclick="myFunction()">Click me</button>
+<p id="demo"></p>
 <div class="container">
-<div class="box">这个 div 1。<img src="/i/bg_flower.gif" alt="Flowers">
+<div class="box" id = "p1">这个 div 1。<img src="/i/bg_flower.gif" alt="Flowers">
 </div>
-<div class="box">这个 div 2。<img src="/i/bg_flower.gif" alt="Flowers">
+<div class="box" id = "p2">这个 div 2。<img src="/i/bg_flower.gif" alt="Flowers">
 </div>
-<div class="box2">这个 div 3。<img src="/i/bg_flower.gif" alt="Flowers">
+<div class="box2" id = "p3">这个 div 3。<img src="/i/bg_flower.gif" alt="Flowers">
 </div>
-<div class="box3">new box </div>
+<div class="box3" id = "p4">new box </div>
+
 
 </div>
+<script>
+function myFunction() {
+  //document.getElementById("demo").innerHTML = "Hello World";
+document.documentElement.style.setProperty('--primary-color', 'blue');
+var boxOne = document.getElementsByClassName('box')[0]
+var boxTwo = document.getElementsByClassName('box')[1]
+//document.documentElement.style.setProperty('--ani', 'myfirst');
+boxOne.classList.add('trans');
+boxTwo.classList.add('trans');
+var boxThree = document.getElementsByClassName('box2')[0]
+boxThree.classList.add('trans');
 
+var boxFour = document.getElementsByClassName('box3')[0]
+boxFour.classList.add('trans');
+
+}
+</script>
 </body>
 </html>
