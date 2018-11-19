@@ -4,8 +4,8 @@
 <style> 
 div.container
 {
-width:90%;
-border:1em solid;
+width:100%;
+//border:1em solid;
 }
 div.box
 {
@@ -23,8 +23,6 @@ background:red;
 position:relative;
 animation:myfirst 3s;
 animation-fill-mode :forwards;
-opacity: 1;
-  transition: opacity 2s linear;
 }
 div.box2
 {
@@ -53,14 +51,10 @@ border:2px solid;
 border-radius:25px;
 //float:left;
 box-shadow: 10px 10px 5px #888888;
-//margin-Right:70px;
+margin-Right:70px;
 background:red;
 position:relative;
 animation:myNewBox 3s forwards;
-}
-div.box3:hover {
-width:100px;
-height:200px;
 }
 
 @keyframes myfirst
@@ -71,13 +65,12 @@ height:200px;
 @keyframes myThird
 {
 0%   {background:red; left:0px; top:0px;}
-100%  { left:200px; top:0px;  width:0; height:0;
-
+100%  { left:100px; opacity:0
 }
 }
 @keyframes myNewBox
 {
-0%  {background:green; left:0px; top:200px;}
+0%  {background:green; left:0px; top:400px;}
 100% {background:red; left:0px; top:0px; width:100px;
 height:200px;}
 }
