@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+div {
+    background-color: red;
+    opacity: 0;
+    filter: Alpha(opacity=50); /* IE8 and earlier */
+}
+/* CSS */
+:root {
+  --primary-color: red;
+}
+
+p {
+  left:20px;
+  top:200px;
+  color: var(--primary-color);
+
+}
+</style>
+</head>
+<body>
+<h1>The opacity Property</h1>
+
+
+
+<!-- HTML -->
+<p>Now I’m a green paragraph!</p>
+
+<script>
+document.documentElement.style.setProperty('--primary-color', 'green');
+</script>
+
+<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper diam at erat pulvinar, at pulvinar felis blandit...</div>
+
+</body>
+</html>
