@@ -93,10 +93,11 @@
     console.log(containerWidth);
     console.log(cardWidth);
     endPos = (containerWidth - cardWidth) / 2;
-    var checkElem = document.getElementById("myAnimation2");
-    checkElem.style.left = endPos;
+    makeMove(document.getElementById("myAnimation1"), 
+             document.getElementById("myAnimation0"), 
+             document.getElementById("myAnimation2"), 
+             document.getElementById("myAnimation3"));
     console.log(endPos);
-    console.log("check "+checkElem.style.left);
 
     function myMove(img) {
         var elem0 = document.getElementById("myAnimation0");
