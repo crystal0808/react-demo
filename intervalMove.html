@@ -32,31 +32,31 @@
     }
 
     #myAnimation1 {
-        width: 150px;
-        height: 150px;
+        width: 250px;
+        height: 250px;
         position: absolute;
         background-color: pink;
     }
 
     #myAnimation2 {
-        width: 150px;
-        height: 150px;
+        width: 250px;
+        height: 250px;
         position: absolute;
         left: 40%;
         background-color: lightblue;
     }
 
     #myAnimation3 {
-        width: 150px;
-        height: 150px;
+        width: 250px;
+        height: 250px;
         position: absolute;
         left: 80%;
         background-color: lightgreen;
     }
 
     #myAnimation0 {
-        width: 150px;
-        height: 150px;
+        width: 250px;
+        height: 250px;
         position: absolute;
         background-color: purple;
         opacity: 0;
@@ -65,6 +65,13 @@
 <body>
 
 
+
+<div id="myContainer">
+    <div id="myAnimation0">0<img id="Img0" src="img_mountains.jpg" style="width:100%"></div>
+    <div id="myAnimation1">1<img id="Img1" src="img_snow.jpg" style="width:100%"></div>
+    <div id="myAnimation2">2<img id="Img2" src="img_nature.jpg" style="width:100%"></div>
+    <div id="myAnimation3">3<img id="Img3" src="img_lights.jpg" style="width:100%"></div>
+</div>
 <div class="row">
     <div class="column">
         <img src="img_nature.jpg" alt="Nature" style="width:100%" onclick="myMove(this)">
@@ -79,22 +86,17 @@
         <img src="img_lights.jpg" alt="Lights" style="width:100%" onclick="myMove(this)">
     </div>
 </div>
-<div id="myContainer">
-    <div id="myAnimation0">0<img id="Img0" src="img_mountains.jpg" style="width:100%"></div>
-    <div id="myAnimation1">1<img id="Img1" src="img_snow.jpg" style="width:100%"></div>
-    <div id="myAnimation2">2<img id="Img2" src="img_nature.jpg" style="width:100%"></div>
-    <div id="myAnimation3">3<img id="Img3" src="img_lights.jpg" style="width:100%"></div>
-</div>
-
 <script>
-    var positionStatus = 0;
     var containerWidth = document.getElementById('myContainer').clientWidth;
     var cardWidth = document.getElementById('myAnimation0').clientWidth;
 
     console.log(containerWidth);
     console.log(cardWidth);
     endPos = (containerWidth - cardWidth) / 2;
+    var checkElem = document.getElementById("myAnimation2");
+    checkElem.style.left = endPos;
     console.log(endPos);
+    console.log("check "+checkElem.style.left);
 
     function myMove(img) {
         var elem0 = document.getElementById("myAnimation0");
@@ -106,24 +108,19 @@
         var img2 = document.getElementById("Img2");
         var img3 = document.getElementById("Img3");
 
-        var currentPos = elem1.offsetLeft;
-        console.log(currentPos);
-        if (currentPos == 0) {
+        if (elem2.offsetLeft == endPos) {
             console.log("1st roll");
-            positionStatus = 1;
             img0.src = img.src;
             makeMove(elem0, elem3, elem1, elem2);
-        } else if (positionStatus == 1) {
+        } else if (elem3.offsetLeft == endPos) {
             console.log("2nd roll");
-            positionStatus = 2;
             img3.src = img.src;
             makeMove(elem3, elem2, elem0, elem1);
-        } else if (positionStatus == 2) {
+        } else if (elem0.offsetLeft == endPos) {
             console.log("3nd roll");
-			positionStatus = 3;
             img2.src = img.src;
             makeMove(elem2, elem1, elem3, elem0);
-        } else if (positionStatus == 3) {
+        } else if (elem1.offsetLeft == endPos) {
             console.log("4th roll");
             img1.src = img.src;
             makeMove(elem1, elem0, elem2, elem3);
