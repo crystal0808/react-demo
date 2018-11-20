@@ -89,23 +89,23 @@
 <script>
         var hide = '';
     function myMove(img) {
+        var elem0 = document.getElementById("myAnimation0");
         var elem1 = document.getElementById("myAnimation1");
         var elem2 = document.getElementById("myAnimation2");
         var elem3 = document.getElementById("myAnimation3");
-        var elem0 = document.getElementById("myAnimation0");
         var img0 = document.getElementById("Img0");
         var img1 = document.getElementById("Img1");
         var img2 = document.getElementById("Img2");
         var img3 = document.getElementById("Img3");
 
         var currentPos = elem1.offsetLeft;
-        elem.style.opacity = 1;
+        
         if (currentPos == 0) {
-            console.log("first roll");
+            console.log("1st roll");
             img0.src = img.src;
             makeMove(elem0, elem3, elem1, elem2, 0, 350);
         } else if (currentPos == 350) {
-            console.log("second roll");
+            console.log("2nd roll");
             img3.src = img.src;
             makeMove(elem3, elem2, elem0, elem1, 0, 350);
         } else if (hide == 'elem1') {
