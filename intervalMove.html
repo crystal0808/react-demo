@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html>
 <style>
+.column {
+    float: left;
+    width: 15%;
+    padding: 10px;
+}
+ /* Style the images inside the grid */
+.column img {
+    opacity: 0.8; 
+    cursor: pointer; 
+}
+ .column img:hover {
+    opacity: 1;
+}
+ /* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
 #myContainer {
   width: 400px;
   height: 400px;
@@ -8,28 +27,28 @@
   background: yellow;
 }
 #myAnimation {
-  width: 50px;
-  height: 50px;
+  width: 150px;
+  height: 150px;
   position: absolute;
   background-color: pink;
 }
 #myAnimation2 {
-  width: 50px;
-  height: 50px;
+  width: 150px;
+  height: 150px;
   position: absolute;
   left:350px;
   background-color: lightblue;
 }
 #myAnimation3 {
-  width: 50px;
-  height: 50px;
+  width: 150px;
+  height: 150px;
   position: absolute;
   left:700px;
   background-color: lightgreen;
 }
 #myNewBox {
-  width: 50px;
-  height: 50px;
+  width: 150px;
+  height: 150px;
   position: absolute;
   background-color: purple;
   opacity:0;
@@ -40,26 +59,44 @@
 <p>
 <button onclick="myMove()">Click Me</button> 
 </p>
-
+<div class="row">
+  <div class="column">
+    <img src="img_nature.jpg" alt="Nature" style="width:100%" onclick="myMove(this)">
+  </div>
+  <div class="column">
+    <img src="img_snow.jpg" alt="Snow" style="width:100%" onclick="myMove(this)">
+  </div>
+  <div class="column">
+    <img src="img_mountains.jpg" alt="Mountains" style="width:100%" onclick="myMove(this)">
+  </div>
+  <div class="column">
+    <img src="img_lights.jpg" alt="Lights" style="width:100%" onclick="myMove(this)">
+  </div>
+</div>
 <div id ="myContainer">
-<div id ="myNewBox">0</div>
-<div id ="myAnimation">1</div>
-<div id ="myAnimation2">2</div>
-<div id ="myAnimation3">3</div>
+<div id ="myNewBox">0<img id="Img0" src="img_mountains.jpg" style="width:100%"></div>
+<div id ="myAnimation">1<img id="Img1" src="img_snow.jpg" style="width:100%"></div>
+<div id ="myAnimation2">2<img id="Img2" src="img_nature.jpg" style="width:100%"></div>
+<div id ="myAnimation3">3<img id="Img3" src="img_lights.jpg" style="width:100%"></div>
 </div>
 
 <script>
-function myMove() {
+function myMove(img) {
   var elem1 = document.getElementById("myAnimation");  
   var elem2 = document.getElementById("myAnimation2");  
   var elem3 = document.getElementById("myAnimation3");  
   var elem = document.getElementById("myNewBox");  
+  var img0 = document.getElementById("Img0");
+    var img1 = document.getElementById("Img1");
+      var img2 = document.getElementById("Img2");
+        var img3 = document.getElementById("Img3");
   var pos = 0;
   var currentPos = elem1.offsetLeft;
   elem.style.opacity = 1;
   console.log(currentPos);
   if (currentPos == 0) {
    console.log("first roll");
+    img0.src = img.src;
     var id = setInterval(frame, 10);
     function frame() {
    // console.log(pos);
@@ -72,10 +109,12 @@ function myMove() {
         elem2.style.left = (pos + 350) + 'px'; 
         elem3.style.opacity = 0; 
         elem.style.left = 0;
+       
       }
     }
   } else if (currentPos == 350) {
    console.log("second roll");
+   img3.src = img.src;
   	let id = setInterval(frame, 10);
     pos = 350;
     function frame() {
@@ -94,6 +133,7 @@ function myMove() {
     }
   } else if (currentPos == 700){
   console.log("3nd roll");
+  img2.src = img.src;
   let id = setInterval(frame, 10);
     pos = 350;
     function frame() {
@@ -111,8 +151,9 @@ function myMove() {
         elem2.style.opacity = 1;
       }
     }
-  } else {
+  } else if (currentPos == 705){
   console.log("4th roll");
+  img1.src = img.src;
   let id = setInterval(frame, 10);
     pos = 0;
     function frame() {
@@ -131,6 +172,8 @@ function myMove() {
       }
     }
   
+  } else {
+  	console.log("no handle")
   }
 }
 </script>
