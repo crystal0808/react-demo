@@ -47,11 +47,15 @@
 }
 .trans{
 position: relative;
-animation:myfirst 3s;
+animation:myfirst 1s forwards;
 }
 .trans2{
 position: relative;
-animation:myThird 3s;
+animation:myThird 1s forwards;
+}
+.position2{
+position: relative;
+margin-left: 30px;
 }
 /* Expanding image text */
 #imgtext {
@@ -103,7 +107,7 @@ animation:myThird 3s;
   </div>
 </div>
  <div class="container2">
-  <img id="expandedImg"  style="width:20%,opacity:0">
+  <img id="expandedImg"  style="width:20%,opacity:0" width=200px>
   <img class="demo" id="Img1" src="img_snow.jpg" style="width:20%">
   <img class="demo" id="Img2" src="img_lights.jpg" style="width:20%">
   <img class="demo" id="Img3" src="img_mountains.jpg" style="width:20%">
@@ -129,13 +133,14 @@ function myFunction(imgs) {
  setTimeout(
     function () {
         replaceCallback(srcStr);
-    }, 3000);
+    }, 1000);
 }
 function replaceCallback(s) {
 var expandImg = document.getElementById("expandedImg");
       var dots = document.getElementsByClassName("demo");
 	var srcArr = s.split(",");
-   // alert(srcArr);
+    //alert(s);
+//   alert("3s")
     expandImg.src = "";
       dots[0].src = srcArr[0];
       dots[1].src = srcArr[1];
@@ -144,6 +149,7 @@ var expandImg = document.getElementById("expandedImg");
       dots[1].className = dots[1].className.replace(" trans", "");
       dots[2].className = dots[2].className.replace(" trans2", "");
       expandImg.parentElement.style.display = "";
+      expandImg.width = "200";
 
       //document.getElementById("expandedImg").style.width = "20%";;
  //   document.getElementById("Img2").src = newSrc2;
