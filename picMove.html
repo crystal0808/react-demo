@@ -6,8 +6,7 @@
 * {
     box-sizing: border-box;
 }
-
-body {
+ body {
     margin: 0;
     font-family: Arial;
 }
@@ -22,26 +21,21 @@ body {
     width: 25%;
     padding: 10px;
 }
-
-/* Style the images inside the grid */
+ /* Style the images inside the grid */
 .column img {
     opacity: 0.8; 
     cursor: pointer; 
 }
-
-.column img:hover {
+ .column img:hover {
     opacity: 1;
 }
-
-
-/* Clear floats after the columns */
+ /* Clear floats after the columns */
 .row:after {
     content: "";
     display: table;
     clear: both;
 }
-
-/* The expanding image container */
+ /* The expanding image container */
 .container {
     position: relative;
     display: none;
@@ -53,15 +47,11 @@ body {
 }
 .trans{
 position: relative;
-animation:myfirst 3s forwards;
+animation:myfirst 3s;
 }
 .trans2{
 position: relative;
-animation:myThird 3s forwards;
-}
-.trans3{
-position: relative;
-animation:myNewBox 3s forwards;
+animation:myThird 3s;
 }
 /* Expanding image text */
 #imgtext {
@@ -71,8 +61,7 @@ animation:myNewBox 3s forwards;
     color: white;
     font-size: 20px;
 }
-
-/* Closable button inside the expanded image */
+ /* Closable button inside the expanded image */
 .closebtn {
     position: absolute;
     top: 10px;
@@ -81,9 +70,7 @@ animation:myNewBox 3s forwards;
     font-size: 35px;
     cursor: pointer;
 }
-
-
-@keyframes myfirst
+ @keyframes myfirst
 {
 0%   {left:0px; top:0px;}
 100%  {left:100px; top:0px;}
@@ -93,122 +80,75 @@ animation:myNewBox 3s forwards;
 0%   {background:red; left:0px; top:0px;}
 100%  {left:100px; opacity:0}
 }
-@keyframes myNewBox
-{
-0%  {background:green; left:0px; top:300px;}
-100% {background:red; left:0px; top:0px; }
-}
-}
 </style>
 </head>
 <body>
-
-<div style="text-align:center">
+ <div style="text-align:center">
   <h2>Tabbed Image Gallery</h2>
   <p>Click on the images below:</p>
 </div>
-
-<!-- The four columns -->
+ <!-- The four columns -->
 <div class="row">
   <div class="column">
-    <img src="img_nature.jpg" alt="Nature" style="width:100%" onclick="myFunction(0);">
+    <img src="img_nature.jpg" alt="Nature" style="width:100%" onclick="myFunction(this, replaceCallback);">
   </div>
   <div class="column">
-    <img src="img_snow.jpg" alt="Snow" style="width:100%" onclick="myFunction(1);">
+    <img src="img_snow.jpg" alt="Snow" style="width:100%" onclick="myFunction(this, replaceCallback);">
   </div>
   <div class="column">
-    <img src="img_mountains.jpg" alt="Mountains" style="width:100%" onclick="myFunction(2);">
+    <img src="img_mountains.jpg" alt="Mountains" style="width:100%" onclick="myFunction(this, replaceCallback);">
   </div>
   <div class="column">
-    <img src="img_lights.jpg" alt="Lights" style="width:100%" onclick="myFunction(3);">
+    <img src="img_lights.jpg" alt="Lights" style="width:100%" onclick="myFunction(this, replaceCallback);">
   </div>
 </div>
-
-
-<div class="container2">
+ <div class="container2">
+  <img id="expandedImg"  style="width:20%,opacity:0">
   <img class="demo" id="Img1" src="img_snow.jpg" style="width:20%">
   <img class="demo" id="Img2" src="img_lights.jpg" style="width:20%">
   <img class="demo" id="Img3" src="img_mountains.jpg" style="width:20%">
   <div id="imgtext"></div>
 </div>
 <script>
-var imgs = ["img_nature.jpg","img_snow.jpg","img_mountains.jpg","img_lights.jpg"];
-function myFunction(n) {
-console.log(n);
+function myFunction(imgs) {
     var expandImg = document.getElementById("expandedImg");
-    var Img1 = document.getElementById("Img1");
-    var Img3 = document.getElementById("Img3");
-    var Img2 = document.getElementById("Img2");
-    var newSrc3 = Img2.src;
-    var newSrc2 = Img1.src;
     var imgText = document.getElementById("imgtext");
-    
-   // var temp = expandImg.src;
-  //  expandImg.src = imgs[n];
-  //  Img2.src = newSrc2;
-   // Img3.src = newSrc3
-   Img1.src = imgs[n];
-    
+   
     var dots = document.getElementsByClassName("demo");
-    //var boxOne = document.getElementsByClassName('demo1')[0]
- //   for (i = 0; i < dots.length; i++) {
-   //   dots[i].classList.remove('trans');
-     // }
-Img1.className.replace(" trans", "");
-Img2.className.replace(" trans", "");
-Img3.className.replace(" trans2", "");
-      Img1.classList.add('trans');
-    //  boxOne.classList.add('horizTranslate');
-    //  Img2.className += " trans";
-      Img2.classList.add('trans');
-      Img3.classList.add('trans2');
-     // Img3.className += " trans2";
-   //   expandImg.className +=" trans"
+    var srcStr = imgs.src + "," + dots[0].src + "," + dots[1].src;
+    expandImg.src = imgs.src;
+
+      dots[0].className += " trans";
+      dots[1].className += " trans";
+      dots[2].className += " trans2";
+      
     expandImg.style.width = "20%";
     imgText.innerHTML = imgs.alt;
-    expandImg.className +=" trans3";
-    //expandImg.parentElement.style.display = "block";
-    //setTimeout(
-    //	function (){replaceCallback(newSrc2, newSrc3);}
-    //    , 3000);
+    expandImg.parentElement.style.display = "block";
     
+ setTimeout(
+    function () {
+        replaceCallback(srcStr);
+    }, 3000);
 }
-myFunction(1).then(function() {
-  console.log('The play() Promise fulfilled! Rock on!');
-}).catch(function(error) {
-  console.log('The play() Promise rejected!');
-  console.log('Use the Play button instead.');
-  console.log(error);
-
-  var playButton = document.querySelector('#play');
-  // The user interaction requirement is met if
-  // playback is triggered via a click event.
-  playButton.addEventListener('click', startPlayback);
-  playButton.hidden = false;
-});
-
-function replaceAndResetCallback(newSrc2, newSrc3) {
+function replaceCallback(s) {
+var expandImg = document.getElementById("expandedImg");
       var dots = document.getElementsByClassName("demo");
- //   for (i = 0; i < dots.length; i++) {
-  //    dots[i].className += " trans";
-//      }
-      dots[0].className -= " trans";
-      dots[1].className -= " trans";
-      dots[2].className -= " trans2";
-      
+	var srcArr = s.split(",");
+   // alert(srcArr);
+    expandImg.src = "";
+      dots[0].src = srcArr[0];
+      dots[1].src = srcArr[1];
+      dots[2].src = srcArr[2];
+      dots[0].className = dots[0].className.replace(" trans", "");
+      dots[1].className = dots[1].className.replace(" trans", "");
+      dots[2].className = dots[2].className.replace(" trans2", "");
+      expandImg.parentElement.style.display = "";
+
       //document.getElementById("expandedImg").style.width = "20%";;
-    var Img2 = document.getElementById("Img2");
-    Img2.src = "";
-    document.getElementById("Img3").src = newSrc3;
+ //   document.getElementById("Img2").src = newSrc2;
+  // document.getElementById("Img3").src = newSrc3;
 }
-function reset($elem) {
-    $elem.before($elem.clone(true));
-    var $newElem = $elem.prev();
-    $elem.remove();
-    return $newElem;
-} // end reset()
-
 </script>
-
-</body>
+ </body>
 </html>
